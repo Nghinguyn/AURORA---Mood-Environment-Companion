@@ -1,4 +1,4 @@
 package com.example.aurora;
 
-public class HomePage {
+public class HomeActivity {
 }
