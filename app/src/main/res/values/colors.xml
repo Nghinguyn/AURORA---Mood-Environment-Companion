@@ -2,4 +2,9 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="deep_night_blue">#0D1B2A</color>
+    <color name="aurora_green">#3DDC97</color>
+    <color name="violet_glow">#9D5CFF</color>
+    <color name="sky_blue">#61A5C2</color>
+    <color name="soft_white">#F5F5F5</color>
 </resources>
