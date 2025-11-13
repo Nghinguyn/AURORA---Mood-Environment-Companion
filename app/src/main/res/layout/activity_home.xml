@@ -1,19 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:gravity="center"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ReflectionActivity">
+    android:background="@drawable/aurora_gradient_dark">
 
     <TextView
+        android:id="@+id/homeTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:text="Welcome to AURA"
+        android:textSize="24sp"
+        android:textColor="@color/soft_white"
+        android:layout_marginBottom="24dp"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <EditText
+        android:id="@+id/moodInput"
+        android:hint="How are you feeling?"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:textColor="@color/soft_white"
+        android:backgroundTint="@color/sky_blue"
+        android:padding="12dp"/>
+
+    <Button
+        android:id="@+id/nextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/AuroraButton.Light"
+        android:text="Next"
+        android:layout_marginTop="24dp"/>
+
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/themeSwitch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="16dp"
+        android:text="Dark Mode"
+        android:textColor="@color/soft_white" />
+
+</LinearLayout>

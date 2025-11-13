@@ -1,3 +1,12 @@
 <resources>
-    <string name="app_name">AURORA</string>
+    <string name="app_name">AURORA soothing journal</string>
+    <string-array name="mood_array">
+        <item>Happy 🌞</item>
+        <item>Calm 🌿</item>
+        <item>Excited ✨</item>
+        <item>Sad 😔</item>
+        <item>Angry 😡</item>
+        <item>Confused 🤔</item>
+        <item>Relaxed 😌</item>
+    </string-array>
 </resources>

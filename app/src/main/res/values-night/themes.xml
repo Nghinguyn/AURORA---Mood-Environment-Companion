@@ -1,7 +1,11 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
     <style name="Base.Theme.AURORA" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your dark theme here. -->
-        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+        <!-- Dark theme colors -->
+        <item name="android:colorBackground">@color/deep_night_blue</item>
+        <item name="android:textColor">@color/soft_white</item>
+        <item name="colorPrimary">@color/violet_glow</item>
+        <item name="colorSecondary">@color/aurora_green</item>
     </style>
+
+    <style name="Theme.AURORA" parent="Base.Theme.AURORA" />
 </resources>
