@@ -50,7 +50,7 @@ public class HomeActivity extends AppCompatActivity {
         }
         // Update layout background color based on theme
         if (isDark) {
-            findViewById(R.id.activity_home).setBackgroundResource(R.drawable.aurora_gradient_dark);  // Dark mode gradient
+            findViewById(R.id.homeLayout).setBackgroundResource(R.drawable.aurora_gradient_dark);  // Dark mode gradient
         } else {
             findViewById(R.id.homeLayout).setBackgroundResource(R.drawable.aurora_gradient_light);  // Light mode gradient
         }

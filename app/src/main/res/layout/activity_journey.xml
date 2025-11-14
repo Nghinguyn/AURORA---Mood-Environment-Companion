@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/journeyLayout"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Your Mood Journey"
-        android:textColor="@color/soft_white"
+        android:textColor="@color/soft_blue"
         android:textSize="24sp"
         android:layout_gravity="center"
         android:layout_margin="16dp"/>

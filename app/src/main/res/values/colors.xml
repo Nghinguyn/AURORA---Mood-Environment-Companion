@@ -9,7 +9,8 @@
     <!-- Light Mode Colors -->
     <color name="sky_blue">#61A5C2</color>
     <color name="soft_white">#F5F5F5</color>
-    <!-- Additional Colors: for buttons and other elements -->
+    <!-- Additional Colors: for buttons and other elements #ACE7F8 -->
     <color name="aurora_green">#3DDC97</color>
-
+    <color name="soft_blue">#ACE7F8</color>
+    <color name="dard_lavender">#6B4897</color>
 </resources>
