@@ -5,8 +5,7 @@
     android:orientation="vertical"
     android:gravity="center"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/aurora_gradient_dark">
+    android:layout_height="match_parent">
 
     <TextView
         android:id="@+id/homeTitle"
