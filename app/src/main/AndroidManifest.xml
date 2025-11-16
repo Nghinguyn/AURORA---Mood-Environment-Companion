@@ -27,11 +27,7 @@
             android:name=".ReflectionActivity"
             android:exported="false" />
         <activity
-            android:name=".MoodJournalWrite"
+            android:name=".JournalWriteActivity"
             android:exported="false" />
-
-        android:exported="false" />
-
     </application>
-
 </manifest>

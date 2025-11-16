@@ -16,8 +16,7 @@ public class JourneyActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_journey);
 
-        journeyList = findViewById(R.id.moodListLayout);  // Find the ListView by ID
-
+        journeyList = findViewById(R.id.mood_list_layout);
         // Sample data for now (this will be dynamic in the future, possibly saved to a database)
         moodEntries = new ArrayList<>();
 

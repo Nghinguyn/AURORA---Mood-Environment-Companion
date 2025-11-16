@@ -49,7 +49,6 @@ public class HomeActivity extends AppCompatActivity {
 
             // Save preference
             prefs.edit().putBoolean("dark_mode", isChecked).apply();
-
             // The activity will likely restart to apply the new theme.
             // This call ensures colors update immediately if it doesn't.
             updateUI(isChecked);
@@ -58,7 +57,7 @@ public class HomeActivity extends AppCompatActivity {
         // Next button listener
         nextButton.setOnClickListener(v -> {
             Log.d("HomeActivity", "Next button clicked!"); // Log for debugging
-            Intent intent = new Intent(HomeActivity.this, JourneyActivity.class);
+            Intent intent = new Intent(HomeActivity.this, JournalWriteActivity.class);
             startActivity(intent);
         });
     }
@@ -67,12 +66,6 @@ public class HomeActivity extends AppCompatActivity {
      * Update UI colors based on current theme.
      */
     private void updateUI(boolean isDark) {
-        // --- FIX IS HERE ---
-        // REMOVED the findViewById calls for moodInput and homeTitle
-        // because they don't exist in the activity_home.xml layout
-        // and are not needed for this method's purpose.
-        // --- END OF FIX ---
-
         // Update layout background
         int bgRes = isDark ? R.drawable.aurora_gradient_dark : R.drawable.aurora_gradient_light;
         findViewById(R.id.homeLayout).setBackgroundResource(bgRes);
