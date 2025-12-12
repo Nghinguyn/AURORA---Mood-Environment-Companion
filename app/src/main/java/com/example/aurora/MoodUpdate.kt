@@ -7,6 +7,10 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.LinearLayout
 import android.widget.TextView
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+import java.util.Locale
+import com.example.aurora.MoodEntry
 
 class MoodUpdate(
     private val context: Context,
@@ -39,13 +43,18 @@ class MoodUpdate(
 
         val entry = moodEntries[position]
 
-        holder.dateTextView.text = entry.date
-        holder.moodTextView.text = entry.mood
+        // Format the date using DateTimeFormatter for LocalDate
+        val formattedDate = formatDate(entry.date)
 
-        // Hide description at first
+        // Set data to TextViews
+        holder.dateTextView.text = formattedDate
+        holder.moodTextView.text = entry.mood
         holder.descriptionTextView.text = entry.description
+
+        // Initially hide description
         holder.expandLayout.visibility = View.GONE
 
+        // Toggle expand/collapse on item click
         view.setOnClickListener {
             holder.expandLayout.visibility =
                 if (holder.expandLayout.visibility == View.GONE) View.VISIBLE
@@ -55,6 +64,23 @@ class MoodUpdate(
         return view
     }
 
+
+    private fun formatDate(date: LocalDate?): String {
+        // Return empty string if the date is null to prevent crashes
+        return if (date != null) {
+            try {
+                val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy", Locale.getDefault())
+                date.format(formatter) // Format LocalDate to String
+            } catch (e: Exception) {
+                // In case of formatting errors, return a fallback string
+                "Invalid Date"
+            }
+        } else {
+            "No Date" // Fallback if date is null
+        }
+    }
+
+    // ViewHolder class to hold references to the views
     private data class ViewHolder(
         val dateTextView: TextView,
         val moodTextView: TextView,

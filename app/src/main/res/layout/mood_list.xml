@@ -10,11 +10,12 @@
     <!-- Date -->
     <TextView
         android:id="@+id/dateTextView"
-        android:text="MM/dd/yyyy"
+        android:text=""
         android:textSize="14sp"
         android:textColor="@android:color/darker_gray"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp" />
 
     <!-- General Mood -->
     <TextView
@@ -23,7 +24,8 @@
         android:textSize="18sp"
         android:textColor="@android:color/black"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"/>
 
     <!-- Expandable description -->
     <LinearLayout
@@ -39,6 +41,7 @@
             android:textSize="16sp"
             android:textColor="@android:color/black"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"/>
     </LinearLayout>
 </LinearLayout>

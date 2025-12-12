@@ -1,7 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-    kotlin("plugin.compose")
+    alias(libs.plugins.jetbrains.compose)
 }
 
 android {
@@ -10,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.aurora"
-        minSdk = 24
+        minSdk = 26
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -20,11 +20,8 @@ android {
         compose = true
     }
 
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.10"
-    }
-
     compileOptions {
+        // 🔥 FIXED: Use Java 17
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
@@ -35,26 +32,27 @@ android {
 }
 
 dependencies {
-    val composeVersion = "1.6.7"
+    implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.androidx.compose.ui)
+    implementation(libs.androidx.compose.material3)
+    implementation(libs.androidx.compose.ui.tooling.preview)
+    debugImplementation(libs.androidx.compose.ui.tooling)
 
+    implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.appcompat)
-    implementation(libs.material)
-    implementation(libs.androidx.activity)
-    implementation(libs.androidx.constraintlayout)
+    implementation(libs.google.material)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-    implementation("androidx.compose.material3:material3:1.2.0")
-    implementation("androidx.compose.ui:ui:$composeVersion")
-    implementation("androidx.compose.ui:ui-tooling-preview:$composeVersion")
-    debugImplementation("androidx.compose.ui:ui-tooling:$composeVersion")
-    implementation("androidx.compose.material3:material3:1.2.1")
-    implementation("androidx.activity:activity-compose:1.9.0")
-    implementation("androidx.compose.ui:ui:1.5.0")
-    implementation("androidx.compose.material3:material3:1.2.0") // Material3
-    implementation("androidx.activity:activity-compose:1.9.0")
-    implementation("androidx.compose.ui:ui-tooling-preview:1.5.0")
-    debugImplementation("androidx.compose.ui:ui-tooling:1.5.0")
+
+    // Database for the app (MongoBD)
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation("com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.2")
+    // Retrofit
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    // Coroutines
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
 }
