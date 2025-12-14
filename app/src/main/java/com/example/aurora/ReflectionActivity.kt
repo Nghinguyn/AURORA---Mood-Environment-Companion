@@ -19,18 +19,9 @@ class ReflectionActivity : ComponentActivity() {
         setContent {
             ReflectionScreen(
                 reflectionMessage = reflectionMessage,
-                onShare = { shareReflection(reflectionMessage) },
                 onViewJourney = { navigateToJourney() }
             )
         }
-    }
-
-    private fun shareReflection(reflectionMessage: String) {
-        val shareIntent = Intent(Intent.ACTION_SEND).apply {
-            putExtra(Intent.EXTRA_TEXT, reflectionMessage)
-            type = "text/plain"
-        }
-        startActivity(Intent.createChooser(shareIntent, "Share via"))
     }
 
     private fun navigateToJourney() {

@@ -19,7 +19,6 @@ import androidx.compose.ui.unit.sp
 @Composable
 fun ReflectionScreen(
     reflectionMessage: String,
-    onShare: () -> Unit,
     onViewJourney: () -> Unit
 ) {
     val auroraGradient = Brush.verticalGradient(
@@ -48,18 +47,7 @@ fun ReflectionScreen(
                     fontSize = 18.sp
                 )
             }
-
-            Spacer(modifier = Modifier.height(24.dp))
-
-            Button(
-                onClick = onShare,
-                modifier = Modifier.fillMaxWidth(0.5f)
-            ) {
-                Text("Share")
-            }
-
             Spacer(modifier = Modifier.height(16.dp))
-
             Button(
                 onClick = onViewJourney,
                 modifier = Modifier.fillMaxWidth(0.5f)
