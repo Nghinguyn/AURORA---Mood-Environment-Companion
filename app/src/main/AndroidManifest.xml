@@ -1,11 +1,13 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.aurora">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <application
+        android:name=".AuroraApplication"
+        android:icon="@mipmap/ic_launcher"
+        android:roundIcon="@mipmap/ic_launcher_round"
         android:label="Aurora"
+        android:supportsRtl="true"
         android:theme="@style/Theme.AURORA">
 
-        <!-- HomeActivity is the launcher activity -->
         <activity
             android:name=".HomeActivity"
             android:exported="true">
@@ -14,21 +16,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <!-- Declaration for JournalWriteActivity -->
-        <activity
-            android:name=".JournalWriteActivity"
-            android:exported="true" />
-
-        <!-- Declaration for JourneyActivity -->
-        <activity
-            android:name=".JourneyActivity"
-            android:exported="true" />
-
-        <!-- Declaration for ReflectionActivity -->
-        <activity
-            android:name=".ReflectionActivity"
-            android:exported="true" />
 
     </application>
 
