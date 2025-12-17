@@ -13,6 +13,7 @@ val SoftWhite = Color(0xFFF5F5F5)
 val SoftBlue = Color(0xFFACE7F8)
 val DarkLavender = Color(0xFF6B4897)
 val LemonYellow = Color(0xFFFEEE91)
+val AuroraPurple = Color(0xFF7B5CFF)
 
 private val DarkColorScheme = darkColorScheme(
     primary = AuroraGreen,

@@ -1,6 +1,7 @@
 package com.example.aurora.data
 
 import com.example.aurora.data.db.JournalDao
+import com.example.aurora.data.db.LocationDao
 import com.example.aurora.data.db.MoodDao
 import com.example.aurora.data.db.MoodEntry
 import com.example.aurora.data.model.DailySummary
@@ -13,7 +14,8 @@ import java.time.YearMonth
 
 class CalendarManager(
     private val journalDao: JournalDao,
-    private val moodDao: MoodDao
+    private val moodDao: MoodDao,
+    private val locationDao: LocationDao
 ) {
     suspend fun getMonthSummary(year: Int, month: Int): MonthSummary {
         val yearMonth = YearMonth.of(year, month)
@@ -22,17 +24,20 @@ class CalendarManager(
 
         val journals = journalDao.getEntriesInRange(startDate, endDate)
         val moods = moodDao.getMoodsInRange(startDate, endDate)
+        val locations = locationDao.getLocationsInRange(startDate, endDate)
 
         val journalsByDate = journals.groupBy { it.date }
         val moodsByDate = moods.groupBy { it.date }
+        val locationsByDate = locations.groupBy { it.date }
 
-        val allDates = (journalsByDate.keys + moodsByDate.keys).distinct()
+        val allDates = (journalsByDate.keys + moodsByDate.keys + locationsByDate.keys).distinct()
 
         val dailySummaries = allDates.associateWith { date ->
             DailySummary(
                 date = date,
                 moods = moodsByDate[date] ?: emptyList(),
-                journalEntries = journalsByDate[date] ?: emptyList()
+                journalEntries = journalsByDate[date] ?: emptyList(),
+                locations = locationsByDate[date] ?: emptyList()
             )
         }
 
@@ -46,17 +51,20 @@ class CalendarManager(
 
         return combine(
             journalDao.observeEntriesInRange(startDate, endDate),
-            moodDao.observeMoodsInRange(startDate, endDate)
-        ) { journals, moods ->
+            moodDao.observeMoodsInRange(startDate, endDate),
+            locationDao.observeLocationsInRange(startDate, endDate)
+        ) { journals, moods, locations ->
             val journalsByDate = journals.groupBy { it.date }
             val moodsByDate = moods.groupBy { it.date }
-            val allDates = (journalsByDate.keys + moodsByDate.keys).distinct()
+            val locationsByDate = locations.groupBy { it.date }
+            val allDates = (journalsByDate.keys + moodsByDate.keys + locationsByDate.keys).distinct()
 
             val dailySummaries = allDates.associateWith { date ->
                 DailySummary(
                     date = date,
                     moods = moodsByDate[date] ?: emptyList(),
-                    journalEntries = journalsByDate[date] ?: emptyList()
+                    journalEntries = journalsByDate[date] ?: emptyList(),
+                    locations = locationsByDate[date] ?: emptyList()
                 )
             }
 

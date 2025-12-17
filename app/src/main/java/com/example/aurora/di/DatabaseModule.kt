@@ -6,7 +6,7 @@ import com.example.aurora.data.CalendarManager
 import com.example.aurora.data.JournalManager
 import com.example.aurora.data.db.AppDatabase
 import com.example.aurora.data.db.JournalDao
-
+import com.example.aurora.data.db.LocationDao
 import com.example.aurora.data.db.MoodDao
 import dagger.Module
 import dagger.Provides
@@ -45,13 +45,19 @@ object DatabaseModule {
 
     @Provides
     @Singleton
+    fun provideLocationDao(database: AppDatabase): LocationDao {
+        return database.locationDao()
+    }
+
+    @Provides
+    @Singleton
     fun provideJournalManager(journalDao: JournalDao, moodDao: MoodDao): JournalManager {
         return JournalManager(journalDao, moodDao)
     }
 
     @Provides
     @Singleton
-    fun provideCalendarManager(journalDao: JournalDao, moodDao: MoodDao): CalendarManager {
-        return CalendarManager(journalDao, moodDao)
+    fun provideCalendarManager(journalDao: JournalDao, moodDao: MoodDao, locationDao: LocationDao): CalendarManager {
+        return CalendarManager(journalDao, moodDao, locationDao)
     }
 }

@@ -1,13 +1,15 @@
 package com.example.aurora.data.model
 
 import com.example.aurora.data.db.JournalEntry
+import com.example.aurora.data.db.LocationEntry
 import com.example.aurora.data.db.MoodEntry
 import java.time.LocalDate
 
 data class DailySummary(
     val date: LocalDate,
     val moods: List<MoodEntry>,
-    val journalEntries: List<JournalEntry>
+    val journalEntries: List<JournalEntry>,
+    val locations: List<LocationEntry> = emptyList()
 ) {
     val hasMoods: Boolean get() = moods.isNotEmpty()
     val hasJournals: Boolean get() = journalEntries.isNotEmpty()

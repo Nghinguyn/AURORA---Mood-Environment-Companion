@@ -1,9 +1,13 @@
 package com.example.aurora.ui.components
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -23,6 +27,7 @@ import java.time.format.DateTimeFormatter
 @Composable
 fun SkyVisualization(
     currentMood: Mood? = null,
+    onSettingsClick: (() -> Unit)? = null,
     modifier: Modifier = Modifier
 ) {
     var currentTime by remember { mutableStateOf(LocalDateTime.now()) }
@@ -46,6 +51,19 @@ fun SkyVisualization(
             .background(skyColors),
         contentAlignment = Alignment.Center
     ) {
+        onSettingsClick?.let { onClick ->
+            Icon(
+                imageVector = Icons.Default.Settings,
+                contentDescription = "Settings",
+                tint = SoftWhite.copy(alpha = 0.7f),
+                modifier = Modifier
+                    .align(Alignment.TopEnd)
+                    .padding(16.dp)
+                    .size(24.dp)
+                    .clickable { onClick() }
+            )
+        }
+
         if (isDaytime) {
             Cloud(
                 modifier = Modifier

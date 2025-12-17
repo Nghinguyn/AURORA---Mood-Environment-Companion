@@ -24,8 +24,10 @@ fun DashboardScreen(
     currentStreak: Int = 0,
     currentMood: Mood? = null,
     todayEntryCount: Int = 0,
+    hasApiKey: Boolean = false,
     onAddJournalClick: () -> Unit,
-    onCalendarClick: () -> Unit
+    onCalendarClick: () -> Unit,
+    onSettingsClick: () -> Unit
 ) {
     Column(
         modifier = Modifier
@@ -33,7 +35,10 @@ fun DashboardScreen(
             .background(DeepNightBlue)
             .verticalScroll(rememberScrollState())
     ) {
-        SkyVisualization(currentMood = currentMood)
+        SkyVisualization(
+            currentMood = currentMood,
+            onSettingsClick = onSettingsClick
+        )
 
         Divider(color = VioletGlow.copy(alpha = 0.3f), thickness = 1.dp)
 
@@ -53,7 +58,9 @@ fun DashboardScreen(
                 onClick = onCalendarClick
             )
 
-            InsightsCard(recentMoods = recentMoods)
+            if (hasApiKey) {
+                InsightsCard(recentMoods = recentMoods)
+            }
         }
     }
 }

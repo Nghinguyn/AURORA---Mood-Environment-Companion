@@ -50,6 +50,7 @@ class JournalManager(
         title: String,
         content: String,
         moods: List<Mood>,
+        locationId: Long? = null,
         date: LocalDate = LocalDate.now()
     ): JournalResult<Long> {
         val validationError = validateEntry(title, content, moods)
@@ -60,7 +61,8 @@ class JournalManager(
         val entry = JournalEntry(
             title = title.trim(),
             content = content.trim(),
-            date = date
+            date = date,
+            locationId = locationId
         )
         val entryId = journalDao.insertEntry(entry)
 
@@ -80,7 +82,8 @@ class JournalManager(
         id: Long,
         title: String,
         content: String,
-        moods: List<Mood>
+        moods: List<Mood>,
+        locationId: Long? = null
     ): JournalResult<Unit> {
         val existingEntry = journalDao.getEntryById(id)
             ?: return JournalResult.Error("Journal entry not found")
@@ -93,6 +96,7 @@ class JournalManager(
         val updatedEntry = existingEntry.copy(
             title = title.trim(),
             content = content.trim(),
+            locationId = locationId,
             updatedAt = System.currentTimeMillis()
         )
         journalDao.updateEntry(updatedEntry)
