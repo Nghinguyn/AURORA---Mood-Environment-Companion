@@ -21,10 +21,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.SolidColor
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.aurora.R
 import com.example.aurora.data.JournalManager
 import com.example.aurora.data.JournalResult
 import com.example.aurora.data.db.JournalEntry
@@ -86,8 +88,8 @@ fun JournalDetailScreen(
     if (showDeleteDialog) {
         AlertDialog(
             onDismissRequest = { showDeleteDialog = false },
-            title = { Text("Delete Entry", color = SoftWhite) },
-            text = { Text("Are you sure you want to delete this journal entry? This cannot be undone.", color = SoftWhite.copy(alpha = 0.8f)) },
+            title = { Text(stringResource(R.string.delete_entry), color = SoftWhite) },
+            text = { Text(stringResource(R.string.delete_confirm), color = SoftWhite.copy(alpha = 0.8f)) },
             confirmButton = {
                 TextButton(
                     onClick = {
@@ -98,12 +100,12 @@ fun JournalDetailScreen(
                         }
                     }
                 ) {
-                    Text("Delete", color = MaterialTheme.colorScheme.error)
+                    Text(stringResource(R.string.delete), color = MaterialTheme.colorScheme.error)
                 }
             },
             dismissButton = {
                 TextButton(onClick = { showDeleteDialog = false }) {
-                    Text("Cancel", color = SoftWhite)
+                    Text(stringResource(R.string.cancel), color = SoftWhite)
                 }
             },
             containerColor = DeepNightBlue,
@@ -134,7 +136,7 @@ fun JournalDetailScreen(
                 }} else onBackClick) as () -> Unit) {
                     Icon(
                         imageVector = if (isEditing) Icons.Default.Close else Icons.Default.ArrowBack,
-                        contentDescription = if (isEditing) "Cancel" else "Back",
+                        contentDescription = if (isEditing) stringResource(R.string.cancel) else stringResource(R.string.back),
                         tint = SoftWhite
                     )
                 }
@@ -144,7 +146,7 @@ fun JournalDetailScreen(
                 IconButton(onClick = { showDeleteDialog = true }) {
                     Icon(
                         imageVector = Icons.Default.Delete,
-                        contentDescription = "Delete",
+                        contentDescription = stringResource(R.string.delete),
                         tint = MaterialTheme.colorScheme.error
                     )
                 }
@@ -178,7 +180,7 @@ fun JournalDetailScreen(
                     ) {
                         Icon(
                             imageVector = Icons.Default.Check,
-                            contentDescription = "Save",
+                            contentDescription = stringResource(R.string.save),
                             tint = AuroraGreen
                         )
                     }
@@ -186,7 +188,7 @@ fun JournalDetailScreen(
                     IconButton(onClick = { isEditing = true }) {
                         Icon(
                             imageVector = Icons.Default.Edit,
-                            contentDescription = "Edit",
+                            contentDescription = stringResource(R.string.edit),
                             tint = SoftWhite
                         )
                     }
@@ -207,7 +209,7 @@ fun JournalDetailScreen(
                 contentAlignment = Alignment.Center
             ) {
                 Text(
-                    text = errorMessage ?: "Entry not found",
+                    text = errorMessage ?: stringResource(R.string.entry_not_found),
                     color = SoftWhite.copy(alpha = 0.6f)
                 )
             }
@@ -288,7 +290,7 @@ fun JournalDetailScreen(
                         )
                         Spacer(modifier = Modifier.width(6.dp))
                         Text(
-                            text = loc.address ?: loc.placeName ?: "Unknown location",
+                            text = loc.address ?: loc.placeName ?: stringResource(R.string.unknown_location),
                             fontSize = 14.sp,
                             color = AuroraGreen.copy(alpha = 0.8f)
                         )
@@ -297,7 +299,7 @@ fun JournalDetailScreen(
 
                 if (isEditing) {
                     Text(
-                        text = "Moods",
+                        text = stringResource(R.string.moods),
                         fontSize = 14.sp,
                         fontWeight = FontWeight.Medium,
                         color = SoftWhite.copy(alpha = 0.7f),
@@ -321,7 +323,7 @@ fun JournalDetailScreen(
                             modifier = Modifier.padding(bottom = 16.dp)
                         ) {
                             moods.map { it.mood }.distinct().forEach { mood ->
-                                Text(text = "${mood.emoji} ${mood.label}", fontSize = 14.sp, color = SoftWhite.copy(alpha = 0.8f))
+                                Text(text = "${mood.emoji} ${stringResource(mood.labelResId)}", fontSize = 14.sp, color = SoftWhite.copy(alpha = 0.8f))
                             }
                         }
                     }
@@ -329,7 +331,7 @@ fun JournalDetailScreen(
 
                 if (isEditing) {
                     Text(
-                        text = "Content",
+                        text = stringResource(R.string.content),
                         fontSize = 14.sp,
                         fontWeight = FontWeight.Medium,
                         color = SoftWhite.copy(alpha = 0.7f),
@@ -401,7 +403,7 @@ private fun EditMoodSelector(
                 ) {
                     Text(text = mood.emoji, fontSize = 16.sp)
                     Text(
-                        text = mood.label,
+                        text = stringResource(mood.labelResId),
                         fontSize = 14.sp,
                         color = if (isSelected) SoftWhite else SoftWhite.copy(alpha = 0.7f)
                     )

@@ -18,10 +18,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.SolidColor
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.aurora.R
 import com.example.aurora.data.JournalManager
 import com.example.aurora.data.JournalResult
 import com.example.aurora.data.db.LocationDao
@@ -43,6 +46,7 @@ fun JournalEntryScreen(
     onBackClick: () -> Unit,
     onSaveSuccess: () -> Unit = onBackClick
 ) {
+    val context = LocalContext.current
     var title by remember { mutableStateOf("") }
     var content by remember { mutableStateOf("") }
     var selectedMoods by remember { mutableStateOf(setOf<Mood>()) }
@@ -71,12 +75,12 @@ fun JournalEntryScreen(
                 IconButton(onClick = onBackClick) {
                     Icon(
                         imageVector = Icons.Default.ArrowBack,
-                        contentDescription = "Back",
+                        contentDescription = stringResource(R.string.back),
                         tint = SoftWhite
                     )
                 }
                 Text(
-                    text = "New Entry",
+                    text = stringResource(R.string.new_entry),
                     fontSize = 20.sp,
                     fontWeight = FontWeight.SemiBold,
                     color = SoftWhite
@@ -114,7 +118,7 @@ fun JournalEntryScreen(
                 } else {
                     Icon(
                         imageVector = Icons.Default.Check,
-                        contentDescription = "Save",
+                        contentDescription = stringResource(R.string.save),
                         tint = SoftWhite
                     )
                 }
@@ -137,7 +141,7 @@ fun JournalEntryScreen(
             }
 
             Text(
-                text = "Title",
+                text = stringResource(R.string.title),
                 fontSize = 14.sp,
                 fontWeight = FontWeight.Medium,
                 color = SoftWhite.copy(alpha = 0.7f),
@@ -161,7 +165,7 @@ fun JournalEntryScreen(
                     Box {
                         if (title.isEmpty()) {
                             Text(
-                                text = "Give your entry a title...",
+                                text = stringResource(R.string.title_hint),
                                 color = SoftWhite.copy(alpha = 0.4f),
                                 fontSize = 16.sp
                             )
@@ -181,11 +185,11 @@ fun JournalEntryScreen(
                         selectedLocation = if (selectedLocation?.id == location.id) null else location
                     },
                     onWriteAbout = { location ->
-                        val prompt = location.placeName ?: location.address ?: "this place"
+                        val prompt = location.placeName ?: location.address ?: context.getString(R.string.unknown_place)
                         if (content.isEmpty()) {
-                            content = "I was at $prompt today...\n\n"
+                            content = context.getString(R.string.location_prompt_start, prompt)
                         } else {
-                            content += "\n\nI was also at $prompt...\n"
+                            content += context.getString(R.string.location_prompt_also, prompt)
                         }
                     }
                 )
@@ -193,7 +197,7 @@ fun JournalEntryScreen(
             }
 
             Text(
-                text = "How are you feeling?",
+                text = stringResource(R.string.how_are_you_feeling),
                 fontSize = 14.sp,
                 fontWeight = FontWeight.Medium,
                 color = SoftWhite.copy(alpha = 0.7f),
@@ -214,7 +218,7 @@ fun JournalEntryScreen(
             Spacer(modifier = Modifier.height(24.dp))
 
             Text(
-                text = "Journal Entry",
+                text = stringResource(R.string.journal_entry_label),
                 fontSize = 14.sp,
                 fontWeight = FontWeight.Medium,
                 color = SoftWhite.copy(alpha = 0.7f),
@@ -222,7 +226,7 @@ fun JournalEntryScreen(
             )
 
             Text(
-                text = "Supports markdown formatting",
+                text = stringResource(R.string.supports_markdown),
                 fontSize = 12.sp,
                 color = SoftWhite.copy(alpha = 0.4f),
                 modifier = Modifier.padding(bottom = 8.dp)
@@ -247,7 +251,7 @@ fun JournalEntryScreen(
                     Box {
                         if (content.isEmpty()) {
                             Text(
-                                text = "Write your thoughts here...\n\nYou can use **bold**, *italic*, and other markdown formatting.",
+                                text = stringResource(R.string.content_hint),
                                 color = SoftWhite.copy(alpha = 0.4f),
                                 fontSize = 14.sp,
                                 lineHeight = 22.sp
@@ -274,7 +278,7 @@ private fun LocationSelector(
 
     Column {
         Text(
-            text = "Where were you?",
+            text = stringResource(R.string.where_were_you),
             fontSize = 14.sp,
             fontWeight = FontWeight.Medium,
             color = SoftWhite.copy(alpha = 0.7f),
@@ -282,7 +286,7 @@ private fun LocationSelector(
         )
 
         Text(
-            text = "Tap to select, long press to add writing prompt",
+            text = stringResource(R.string.location_hint),
             fontSize = 12.sp,
             color = SoftWhite.copy(alpha = 0.4f),
             modifier = Modifier.padding(bottom = 12.dp)
@@ -332,7 +336,7 @@ private fun LocationSelector(
 
                 Column(modifier = Modifier.weight(1f)) {
                     Text(
-                        text = location.placeName ?: "Unknown place",
+                        text = location.placeName ?: stringResource(R.string.unknown_place),
                         fontSize = 14.sp,
                         fontWeight = if (isSelected) FontWeight.SemiBold else FontWeight.Medium,
                         color = SoftWhite
@@ -355,7 +359,7 @@ private fun LocationSelector(
                     )
                     if (location.durationMinutes > 0) {
                         Text(
-                            text = "${location.durationMinutes} min",
+                            text = stringResource(R.string.minutes_short, location.durationMinutes),
                             fontSize = 11.sp,
                             color = SoftWhite.copy(alpha = 0.4f)
                         )
@@ -379,7 +383,7 @@ private fun LocationSelector(
 
         if (uniqueLocations.isEmpty()) {
             Text(
-                text = "No locations recorded yet today",
+                text = stringResource(R.string.no_locations_today),
                 fontSize = 13.sp,
                 color = SoftWhite.copy(alpha = 0.4f),
                 modifier = Modifier.padding(8.dp)
@@ -423,7 +427,7 @@ private fun MoodSelector(
                 ) {
                     Text(text = mood.emoji, fontSize = 16.sp)
                     Text(
-                        text = mood.label,
+                        text = stringResource(mood.labelResId),
                         fontSize = 14.sp,
                         color = if (isSelected) SoftWhite else SoftWhite.copy(alpha = 0.7f)
                     )

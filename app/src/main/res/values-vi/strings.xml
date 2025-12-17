@@ -1,0 +1,145 @@
+<resources>
+    <string name="app_name">Aurora</string>
+    
+    <!-- Navigation -->
+    <string name="back">Quay lại</string>
+    <string name="open">Mở</string>
+    <string name="add">Thêm</string>
+    <string name="save">Lưu</string>
+    <string name="refresh">Làm mới</string>
+    <string name="show">Hiện</string>
+    <string name="hide">Ẩn</string>
+    
+    <!-- Dashboard -->
+    <string name="new_journal_entry">Nhật Ký Mới</string>
+    <string name="capture_your_thoughts">Ghi lại suy nghĩ của bạn</string>
+    <string name="entries_today">%d mục hôm nay</string>
+    <string name="your_journey">Hành Trình Của Bạn</string>
+    <string name="entries">Mục</string>
+    <string name="streak">Chuỗi</string>
+    <string name="top_mood">Tâm Trạng Chính</string>
+    
+    <!-- Insights -->
+    <string name="insights_title">✨ Phân Tích</string>
+    <string name="insights_report_title">✨ Báo Cáo Phân Tích</string>
+    <string name="ai_insight">Phân Tích AI</string>
+    <string name="key_insight">💡 Nhận Định Chính</string>
+    <string name="mood_balance">Cân Bằng Tâm Trạng</string>
+    <string name="positive_percent">%d%% tích cực</string>
+    <string name="tap_for_full_report">Nhấn để xem báo cáo đầy đủ →</string>
+    <string name="analyzing_patterns">Đang phân tích xu hướng…</string>
+    <string name="insights_getting_started_title">Bắt Đầu</string>
+    <string name="insights_getting_started_summary">Bắt đầu theo dõi tâm trạng để mở khóa phân tích cá nhân!</string>
+    <string name="insights_getting_started_body">Chào mừng đến với Aurora Insights! Khi bạn đã ghi lại một vài mục tâm trạng và nhật ký, tôi sẽ phân tích xu hướng của bạn để giúp bạn hiểu điều gì mang lại niềm vui và sự bình yên.\n\n**Mẹo:** Hãy ghi lại tâm trạng vào các thời điểm khác nhau trong ngày để có phân tích chính xác nhất.</string>
+    
+    <!-- Mood Tips -->
+    <string name="tip_hydration_title">Uống Đủ Nước</string>
+    <string name="tip_hydration_desc">Nước ảnh hưởng đến tâm trạng nhiều hơn bạn nghĩ!</string>
+    <string name="tip_happy_title">Thật Tuyệt</string>
+    <string name="tip_happy_desc">Tiếp tục những gì đang hiệu quả!</string>
+    <string name="tip_sad_title">Nhẹ Nhàng Thôi</string>
+    <string name="tip_sad_desc">Buồn cũng không sao.</string>
+    <string name="tip_anxious_title">Bình Tĩnh Lại</string>
+    <string name="tip_anxious_desc">Hãy thử hít thở sâu.</string>
+    <string name="tip_calm_title">Bình An Nội Tâm</string>
+    <string name="tip_calm_desc">Sự bình tĩnh là sức mạnh của bạn.</string>
+    <string name="tip_angry_title">Chuyển Hóa Nó</string>
+    <string name="tip_angry_desc">Sử dụng năng lượng đó một cách khôn ngoan.</string>
+    <string name="tip_excited_title">Tận Dụng Nó</string>
+    <string name="tip_excited_desc">Thời điểm tuyệt vời cho sáng tạo!</string>
+    <string name="tip_tired_title">Nghỉ Ngơi Đi</string>
+    <string name="tip_tired_desc">Cần thời gian phục hồi.</string>
+    <string name="tip_grateful_title">Tuyệt Đẹp</string>
+    <string name="tip_grateful_desc">Lòng biết ơn thu hút thêm điều tốt.</string>
+    <string name="tip_confused_title">Tìm Sự Rõ Ràng</string>
+    <string name="tip_confused_desc">Hãy viết ra.</string>
+    <string name="tip_hopeful_title">Tiếp Tục Đi</string>
+    <string name="tip_hopeful_desc">Tin vào quá trình.</string>
+    <string name="tip_default_title">Mẹo</string>
+    <string name="tip_default_desc">Theo dõi tâm trạng hàng ngày!</string>
+    
+    <!-- Quotes -->
+    <string name="quote_1">Con đường duy nhất là đi xuyên qua</string>
+    <string name="quote_1_author">Robert Frost</string>
+    <string name="quote_2">Bạn là bầu trời. Mọi thứ khác chỉ là thời tiết</string>
+    <string name="quote_2_author">Pema Chödrön</string>
+    <string name="quote_3">Chúng ta nghĩ gì, chúng ta trở thành điều đó</string>
+    <string name="quote_3_author">Đức Phật</string>
+    <string name="quote_4">Hãy là chính mình; mọi người khác đã có người rồi</string>
+    <string name="quote_4_author">Oscar Wilde</string>
+    
+    <!-- Settings -->
+    <string name="settings">Cài Đặt</string>
+    <string name="ai_integration">Tích Hợp AI</string>
+    <string name="google_ai_api_key">Khóa API Google AI Studio</string>
+    <string name="api_key_hint">Nhập khóa API của bạn…</string>
+    <string name="api_key_help">Lấy khóa API tại aistudio.google.com</string>
+    <string name="api_key_saved">Đã lưu khóa API</string>
+    <string name="about">Giới Thiệu</string>
+    <string name="app_description">Aurora - Người Bạn Đồng Hành Tâm Trạng &amp; Môi Trường</string>
+    <string name="version">Phiên bản %s</string>
+    
+    <!-- Language Settings -->
+    <string name="language">Ngôn ngữ</string>
+    <string name="language_system_default">Mặc định hệ thống</string>
+    <string name="language_english">English</string>
+    <string name="language_vietnamese">Tiếng Việt</string>
+    
+    <!-- Moods -->
+    <string name="mood_happy">Vui vẻ</string>
+    <string name="mood_sad">Buồn</string>
+    <string name="mood_anxious">Lo lắng</string>
+    <string name="mood_calm">Bình tĩnh</string>
+    <string name="mood_angry">Tức giận</string>
+    <string name="mood_excited">Phấn khích</string>
+    <string name="mood_tired">Mệt mỏi</string>
+    <string name="mood_grateful">Biết ơn</string>
+    <string name="mood_confused">Bối rối</string>
+    <string name="mood_hopeful">Hy vọng</string>
+    
+    <!-- Errors -->
+    <string name="error_api_key_not_configured">Chưa cấu hình khóa API</string>
+    <string name="error_using_cached">Sử dụng phân tích đã lưu: %s</string>
+    <string name="error_generate_insights">Không thể tạo phân tích</string>
+    
+    <!-- Journal Entry Screen -->
+    <string name="new_entry">Mục Mới</string>
+    <string name="title">Tiêu đề</string>
+    <string name="title_hint">Đặt tiêu đề cho mục của bạn…</string>
+    <string name="how_are_you_feeling">Bạn đang cảm thấy thế nào?</string>
+    <string name="journal_entry_label">Nhật Ký</string>
+    <string name="supports_markdown">Hỗ trợ định dạng markdown</string>
+    <string name="content_hint">Viết suy nghĩ của bạn ở đây…\n\nBạn có thể sử dụng **đậm**, *nghiêng*, và các định dạng markdown khác.</string>
+    <string name="where_were_you">Bạn đã ở đâu?</string>
+    <string name="location_hint">Nhấn để chọn, nhấn giữ để thêm gợi ý viết</string>
+    <string name="no_locations_today">Chưa ghi nhận địa điểm nào hôm nay</string>
+    <string name="unknown_place">Địa điểm không xác định</string>
+    <string name="minutes_short">%d phút</string>
+    <string name="location_prompt_start">Hôm nay tôi đã ở %s…\n\n</string>
+    <string name="location_prompt_also">\n\nTôi cũng đã ở %s…\n</string>
+    
+    <!-- Journal Detail Screen -->
+    <string name="delete">Xóa</string>
+    <string name="edit">Sửa</string>
+    <string name="cancel">Hủy</string>
+    <string name="delete_entry">Xóa Mục</string>
+    <string name="delete_confirm">Bạn có chắc chắn muốn xóa mục nhật ký này không? Không thể hoàn tác.</string>
+    <string name="entry_not_found">Không tìm thấy mục</string>
+    <string name="moods">Tâm trạng</string>
+    <string name="content">Nội dung</string>
+    <string name="unknown_location">Địa điểm không xác định</string>
+    
+    <!-- Calendar Screen -->
+    <string name="previous_month">Tháng trước</string>
+    <string name="next_month">Tháng sau</string>
+    <string name="no_entries_for_day">Không có mục nhật ký nào cho ngày này</string>
+    
+    <!-- Day Abbreviations -->
+    <string name="day_mon">T2</string>
+    <string name="day_tue">T3</string>
+    <string name="day_wed">T4</string>
+    <string name="day_thu">T5</string>
+    <string name="day_fri">T6</string>
+    <string name="day_sat">T7</string>
+    <string name="day_sun">CN</string>
+</resources>

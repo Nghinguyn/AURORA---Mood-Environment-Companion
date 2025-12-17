@@ -16,17 +16,17 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.aurora.R
 import com.example.aurora.data.db.MoodEntry
 import com.example.aurora.ui.theme.AuroraGreen
 import com.example.aurora.ui.theme.LemonYellow
 import com.example.aurora.ui.theme.SoftWhite
 import com.example.aurora.ui.theme.VioletGlow
 import java.time.LocalDate
-import java.time.format.TextStyle
-import java.util.Locale
 
 @Composable
 fun JourneyCard(
@@ -54,14 +54,14 @@ fun JourneyCard(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    text = "Your Journey",
+                    text = stringResource(R.string.your_journey),
                     fontSize = 20.sp,
                     fontWeight = FontWeight.Bold,
                     color = SoftWhite
                 )
                 Icon(
                     imageVector = Icons.Default.KeyboardArrowRight,
-                    contentDescription = "Open",
+                    contentDescription = stringResource(R.string.open),
                     tint = SoftWhite.copy(alpha = 0.5f)
                 )
             }
@@ -76,12 +76,20 @@ fun JourneyCard(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceEvenly
             ) {
-                StatItem(value = totalEntries.toString(), label = "Entries", color = AuroraGreen)
-                StatItem(value = "🔥 $currentStreak", label = "Streak", color = LemonYellow)
+                StatItem(
+                    value = totalEntries.toString(),
+                    label = stringResource(R.string.entries),
+                    color = AuroraGreen
+                )
+                StatItem(
+                    value = "🔥 $currentStreak",
+                    label = stringResource(R.string.streak),
+                    color = LemonYellow
+                )
                 StatItem(
                     value = recentMoods.groupBy { it.mood }
                         .maxByOrNull { it.value.size }?.key?.emoji ?: "—",
-                    label = "Top Mood",
+                    label = stringResource(R.string.top_mood),
                     color = VioletGlow
                 )
             }
@@ -94,6 +102,16 @@ private fun WeekRow(recentMoods: List<MoodEntry>) {
     val today = LocalDate.now()
     val weekStart = today.minusDays(today.dayOfWeek.value.toLong() - 1)
     val moodsByDate = recentMoods.groupBy { it.date }
+    
+    val dayAbbreviations = listOf(
+        stringResource(R.string.day_mon),
+        stringResource(R.string.day_tue),
+        stringResource(R.string.day_wed),
+        stringResource(R.string.day_thu),
+        stringResource(R.string.day_fri),
+        stringResource(R.string.day_sat),
+        stringResource(R.string.day_sun)
+    )
 
     Row(
         modifier = Modifier
@@ -107,10 +125,11 @@ private fun WeekRow(recentMoods: List<MoodEntry>) {
             val date = weekStart.plusDays(offset.toLong())
             val mood = moodsByDate[date]?.firstOrNull()?.mood
             val isToday = date == today
+            val dayIndex = (date.dayOfWeek.value - 1) % 7
 
             Column(horizontalAlignment = Alignment.CenterHorizontally) {
                 Text(
-                    text = date.dayOfWeek.getDisplayName(TextStyle.SHORT, Locale.getDefault()).take(2),
+                    text = dayAbbreviations[dayIndex],
                     fontSize = 10.sp,
                     color = if (isToday) AuroraGreen else SoftWhite.copy(alpha = 0.5f)
                 )

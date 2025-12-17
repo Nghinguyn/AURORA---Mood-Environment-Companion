@@ -15,6 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -116,7 +117,7 @@ fun SkyVisualization(
             currentMood?.let { mood ->
                 Spacer(modifier = Modifier.height(8.dp))
                 Text(
-                    text = "${mood.emoji} ${mood.label}",
+                    text = "${mood.emoji} ${stringResource(mood.labelResId)}",
                     fontSize = 14.sp,
                     color = SoftWhite.copy(alpha = 0.7f)
                 )

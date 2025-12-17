@@ -5,6 +5,7 @@ import androidx.room.Room
 import com.example.aurora.data.CalendarManager
 import com.example.aurora.data.JournalManager
 import com.example.aurora.data.db.AppDatabase
+import com.example.aurora.data.db.InsightDao
 import com.example.aurora.data.db.JournalDao
 import com.example.aurora.data.db.LocationDao
 import com.example.aurora.data.db.MoodDao
@@ -47,6 +48,12 @@ object DatabaseModule {
     @Singleton
     fun provideLocationDao(database: AppDatabase): LocationDao {
         return database.locationDao()
+    }
+
+    @Provides
+    @Singleton
+    fun provideInsightDao(database: AppDatabase): InsightDao {
+        return database.insightDao()
     }
 
     @Provides

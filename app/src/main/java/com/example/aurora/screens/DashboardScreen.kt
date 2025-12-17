@@ -8,6 +8,7 @@ import androidx.compose.material3.Divider
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.example.aurora.data.InsightsRepository
 import com.example.aurora.data.db.MoodEntry
 import com.example.aurora.data.model.Mood
 import com.example.aurora.ui.components.InsightsCard
@@ -25,9 +26,11 @@ fun DashboardScreen(
     currentMood: Mood? = null,
     todayEntryCount: Int = 0,
     hasApiKey: Boolean = false,
+    insightsRepository: InsightsRepository? = null,
     onAddJournalClick: () -> Unit,
     onCalendarClick: () -> Unit,
-    onSettingsClick: () -> Unit
+    onSettingsClick: () -> Unit,
+    onInsightsClick: () -> Unit = {}
 ) {
     Column(
         modifier = Modifier
@@ -58,8 +61,12 @@ fun DashboardScreen(
                 onClick = onCalendarClick
             )
 
-            if (hasApiKey) {
-                InsightsCard(recentMoods = recentMoods)
+            if (hasApiKey && insightsRepository != null) {
+                InsightsCard(
+                    insightsRepository = insightsRepository,
+                    recentMoods = recentMoods,
+                    onClick = onInsightsClick
+                )
             }
         }
     }

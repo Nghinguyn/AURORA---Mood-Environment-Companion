@@ -16,9 +16,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.aurora.R
 import com.example.aurora.ui.theme.AuroraGreen
 import com.example.aurora.ui.theme.DeepNightBlue
 import com.example.aurora.ui.theme.SoftWhite
@@ -44,21 +46,21 @@ fun JournalEntryCard(
         ) {
             Column(modifier = Modifier.weight(1f)) {
                 Text(
-                    text = "New Journal Entry",
+                    text = stringResource(R.string.new_journal_entry),
                     fontSize = 20.sp,
                     fontWeight = FontWeight.Bold,
                     color = SoftWhite
                 )
                 Spacer(modifier = Modifier.height(4.dp))
                 Text(
-                    text = "Capture your thoughts",
+                    text = stringResource(R.string.capture_your_thoughts),
                     fontSize = 14.sp,
                     color = SoftWhite.copy(alpha = 0.6f)
                 )
                 if (todayEntryCount > 0) {
                     Spacer(modifier = Modifier.height(8.dp))
                     Text(
-                        text = "$todayEntryCount entries today",
+                        text = stringResource(R.string.entries_today, todayEntryCount),
                         fontSize = 12.sp,
                         color = AuroraGreen
                     )
@@ -74,7 +76,7 @@ fun JournalEntryCard(
             ) {
                 Icon(
                     imageVector = Icons.Default.Add,
-                    contentDescription = "Add",
+                    contentDescription = stringResource(R.string.add),
                     tint = DeepNightBlue,
                     modifier = Modifier.size(24.dp)
                 )

@@ -17,12 +17,14 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.material.icons.filled.Place
+import com.example.aurora.R
 import com.example.aurora.data.CalendarManager
 import com.example.aurora.data.db.JournalEntry
 import com.example.aurora.data.db.LocationEntry
@@ -67,12 +69,12 @@ fun CalendarScreen(
             IconButton(onClick = onBackClick) {
                 Icon(
                     imageVector = Icons.Default.ArrowBack,
-                    contentDescription = "Back",
+                    contentDescription = stringResource(R.string.back),
                     tint = SoftWhite
                 )
             }
             Text(
-                text = "Your Journey",
+                text = stringResource(R.string.your_journey),
                 fontSize = 20.sp,
                 fontWeight = FontWeight.SemiBold,
                 color = SoftWhite
@@ -121,7 +123,7 @@ private fun MonthHeader(
         IconButton(onClick = onPreviousMonth) {
             Icon(
                 imageVector = Icons.Default.KeyboardArrowLeft,
-                contentDescription = "Previous month",
+                contentDescription = stringResource(R.string.previous_month),
                 tint = SoftWhite
             )
         }
@@ -136,7 +138,7 @@ private fun MonthHeader(
         IconButton(onClick = onNextMonth) {
             Icon(
                 imageVector = Icons.Default.KeyboardArrowRight,
-                contentDescription = "Next month",
+                contentDescription = stringResource(R.string.next_month),
                 tint = SoftWhite
             )
         }
@@ -150,7 +152,15 @@ private fun CalendarGrid(
     selectedDate: LocalDate?,
     onDateSelected: (LocalDate) -> Unit
 ) {
-    val daysOfWeek = listOf("Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat")
+    val daysOfWeek = listOf(
+        stringResource(R.string.day_sun),
+        stringResource(R.string.day_mon),
+        stringResource(R.string.day_tue),
+        stringResource(R.string.day_wed),
+        stringResource(R.string.day_thu),
+        stringResource(R.string.day_fri),
+        stringResource(R.string.day_sat)
+    )
     val firstDayOfMonth = yearMonth.atDay(1)
     val startDayOfWeek = (firstDayOfMonth.dayOfWeek.value % 7)
     val daysInMonth = yearMonth.lengthOfMonth()
@@ -306,7 +316,7 @@ private fun JournalList(
                 contentAlignment = Alignment.Center
             ) {
                 Text(
-                    text = "No journal entries for this day",
+                    text = stringResource(R.string.no_entries_for_day),
                     color = SoftWhite.copy(alpha = 0.5f),
                     fontSize = 14.sp
                 )
@@ -390,29 +400,31 @@ private fun JournalPreviewCard(
                     when {
                         addr != null -> addr.split(",").take(2).joinToString(",")
                         place != null -> place
-                        else -> "Unknown location"
+                        else -> null
                     }
                 }
                 
-                Spacer(modifier = Modifier.height(6.dp))
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    Icon(
-                        imageVector = Icons.Default.Place,
-                        contentDescription = null,
-                        tint = AuroraGreen,
-                        modifier = Modifier.size(14.dp)
-                    )
-                    Spacer(modifier = Modifier.width(4.dp))
-                    Text(
-                        text = locationName,
-                        fontSize = 12.sp,
-                        color = AuroraGreen.copy(alpha = 0.8f),
-                        maxLines = 2,
-                        overflow = TextOverflow.Ellipsis
-                    )
+                locationName?.let { name ->
+                    Spacer(modifier = Modifier.height(6.dp))
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.Place,
+                            contentDescription = null,
+                            tint = AuroraGreen,
+                            modifier = Modifier.size(14.dp)
+                        )
+                        Spacer(modifier = Modifier.width(4.dp))
+                        Text(
+                            text = name,
+                            fontSize = 12.sp,
+                            color = AuroraGreen.copy(alpha = 0.8f),
+                            maxLines = 2,
+                            overflow = TextOverflow.Ellipsis
+                        )
+                    }
                 }
             }
 

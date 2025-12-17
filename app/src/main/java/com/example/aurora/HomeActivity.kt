@@ -4,8 +4,8 @@ import android.Manifest
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
-import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.appcompat.app.AppCompatActivity
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -20,8 +20,10 @@ import com.example.aurora.data.db.LocationDao
 import com.example.aurora.location.LocationTrackingService
 import com.example.aurora.location.LocationTrackingService.Companion.ACTION_OPEN_JOURNAL
 import com.example.aurora.data.db.MoodDao
+import com.example.aurora.data.InsightsRepository
 import com.example.aurora.data.SettingsRepository
 import com.example.aurora.screens.CalendarScreen
+import com.example.aurora.screens.InsightsScreen
 import com.example.aurora.screens.DashboardScreen
 import com.example.aurora.screens.JournalDetailScreen
 import com.example.aurora.screens.JournalEntryScreen
@@ -36,11 +38,12 @@ sealed class Screen {
     object JournalEntry : Screen()
     object Calendar : Screen()
     object Settings : Screen()
+    object Insights : Screen()
     data class JournalDetail(val journalId: Long) : Screen()
 }
 
 @AndroidEntryPoint
-class HomeActivity : ComponentActivity() {
+class HomeActivity : AppCompatActivity() {
 
     @Inject
     lateinit var database: AppDatabase
@@ -59,6 +62,9 @@ class HomeActivity : ComponentActivity() {
 
     @Inject
     lateinit var settingsRepository: SettingsRepository
+
+    @Inject
+    lateinit var insightsRepository: InsightsRepository
 
     private val locationPermissionLauncher = registerForActivityResult(
         ActivityResultContracts.RequestMultiplePermissions()
@@ -122,9 +128,11 @@ class HomeActivity : ComponentActivity() {
                         currentMood = currentMood,
                         todayEntryCount = todayJournals.size,
                         hasApiKey = !hasApiKey.isNullOrBlank(),
+                        insightsRepository = insightsRepository,
                         onAddJournalClick = { currentScreen = Screen.JournalEntry },
                         onCalendarClick = { currentScreen = Screen.Calendar },
-                        onSettingsClick = { currentScreen = Screen.Settings }
+                        onSettingsClick = { currentScreen = Screen.Settings },
+                        onInsightsClick = { currentScreen = Screen.Insights }
                     )
                     is Screen.JournalEntry -> JournalEntryScreen(
                         journalManager = journalManager,
@@ -150,6 +158,10 @@ class HomeActivity : ComponentActivity() {
                     )
                     is Screen.Settings -> SettingsScreen(
                         settingsRepository = settingsRepository,
+                        onBackClick = { currentScreen = Screen.Dashboard }
+                    )
+                    is Screen.Insights -> InsightsScreen(
+                        insightsRepository = insightsRepository,
                         onBackClick = { currentScreen = Screen.Dashboard }
                     )
                 }
